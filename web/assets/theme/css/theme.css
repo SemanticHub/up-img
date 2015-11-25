@@ -13,3 +13,6 @@ body {
 .theme-jumbotron .jumbotron {
     background: #000000; border-radius: 0px;
 }
+.theme-carousel {
+    background: #111111;
+}
