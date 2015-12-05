@@ -1,6 +1,6 @@
 ;(function($){
     "use strict";
-    $.fn.carousel = function(args){
+    $.fn.slideshow = function(args){
         var defaults, obj;
         defaults = {
             infinite : true,
@@ -12,10 +12,9 @@
             itemMinWidth : 0,
             itemEqualHeight : false,
             itemMargin : 0,
-            itemClassActive : 'crsl-active',
+            itemClassActive : 'active',
             imageWideClass : 'wide-image',
-            // Use to build grid system - carousel : false
-            carousel : true
+            slideshow : true
         };
         return $(this).each( function(){
             // Set Object
@@ -33,7 +32,7 @@
 
             obj.init = function(){
                 // Set some default vars
-                defaults.total = $(obj).find('.crsl-item').length;
+                defaults.total = $(obj).find('.slideshow-slide').length;
                 defaults.itemWidth = $(obj).outerWidth();
                 defaults.visibleDefault = defaults.visible;
 
@@ -46,22 +45,22 @@
                 // .crsl-items
                 $(obj).css({ width: '100%' });
                 // .crls-item
-                $(obj).find('.crsl-item').css({ position: 'relative', float: 'left', overflow: 'hidden', height: 'auto' });
-                // .crsl-item > images with full width
+                $(obj).find('.slideshow-slide').css({ position: 'relative', float: 'left', overflow: 'hidden', height: 'auto' });
+                // .slideshow-slide > images with full width
                 $(obj).find('.'+defaults.imageWideClass).each( function(){
                     $(this).css({ display: 'block', width: '100%', height: 'auto' });
                 });
-                // .crsl-item > iframes (videos)
-                $(obj).find('.crsl-item iframe').attr({ width: '100%' });
+                // .slideshow-slide > iframes (videos)
+                $(obj).find('.slideshow-slide iframe').attr({ width: '100%' });
 
 
                 // Declare the item ative
-                if( defaults.carousel )
-                    $(obj).find('.crsl-item:first-child').addClass(defaults.itemClassActive);
+                if( defaults.slideshow )
+                    $(obj).find('.slideshow-slide:first-child').addClass(defaults.itemClassActive);
 
-                // Move last element to begin for infinite carousel
-                if( defaults.carousel && defaults.infinite && ( defaults.visible < defaults.total ) )
-                    $(obj).find('.crsl-item:first-child').before( $('.crsl-item:last-child', obj) );
+                // Move last element to begin for infinite slideshow
+                if( defaults.slideshow && defaults.infinite && ( defaults.visible < defaults.total ) )
+                    $(obj).find('.slideshow-slide:first-child').before( $('.slideshow-slide:last-child', obj) );
 
                 // if defaults.overflow
                 if( defaults.overflow === false ){
@@ -128,33 +127,33 @@
                     defaults.visible = defaults.visibleDefault;
                 }
 
-                if( defaults.carousel ){
-                    // Normal use - Global carousel variables
+                if( defaults.slideshow ){
+                    // Normal use - Global slideshow variables
                     // Set Variables
                     obj.wrapWidth = Math.floor( ( defaults.itemWidth + defaults.itemMargin ) * defaults.total );
                     obj.wrapMargin = obj.wrapMarginDefault = defaults.infinite && defaults.visible < defaults.total ? parseInt( ( defaults.itemWidth + defaults.itemMargin ) * -1, 10 ) : 0 ;
-                    // Move last element to begin for infinite carousel
-                    if( defaults.infinite && ( defaults.visible < defaults.total ) && ( $(obj).find('.crsl-item.'+defaults.itemClassActive).index() === 0 ) ){
-                        $(obj).find('.crsl-item:first-child').before( $('.crsl-item:last-child', obj) );
+                    // Move last element to begin for infinite slideshow
+                    if( defaults.infinite && ( defaults.visible < defaults.total ) && ( $(obj).find('.slideshow-slide.'+defaults.itemClassActive).index() === 0 ) ){
+                        $(obj).find('.slideshow-slide:first-child').before( $('.slideshow-slide:last-child', obj) );
                         obj.wrapMargin = obj.wrapMarginDefault = parseInt( ( defaults.itemWidth + defaults.itemMargin ) * -1, 10 );
                     }
                     // Modify width & margin to .crsl-wrap
-                    $(obj).find('.crsl-wrap').css({ width: obj.wrapWidth+'px', marginLeft: obj.wrapMargin });
+                    $(obj).find('.slideshow-wrap').css({ width: obj.wrapWidth+'px', marginLeft: obj.wrapMargin });
                 } else {
                     // Excepcional use
                     // responsiveCarousel might be use to create grids!
                     obj.wrapWidth = $(obj).outerWidth();
-                    $(obj).find('.crsl-wrap').css({ width: obj.wrapWidth+defaults.itemMargin+'px' });
+                    $(obj).find('.slideshow-wrap').css({ width: obj.wrapWidth+defaults.itemMargin+'px' });
                     $('#'+defaults.navigation).hide();
                 }
 
-                $(obj).find('.crsl-item').css({ width: defaults.itemWidth+'px', marginRight : defaults.itemMargin+'px' });
+                $(obj).find('.slideshow-item').css({ width: defaults.itemWidth+'px', marginRight : defaults.itemMargin+'px' });
 
                 // Equal Height Configuration
                 obj.equalHeights();
 
                 // Condition if total <= visible
-                if( defaults.carousel ){
+                if( defaults.slideshow ){
                     if( defaults.visible >= defaults.total ){
                         defaults.autoRotate = false;
                         $('#'+defaults.navigation).hide();
@@ -168,11 +167,11 @@
             obj.equalHeights = function(){
                 if( defaults.itemEqualHeight !== false ){
                     var tallest = 0;
-                    $(obj).find('.crsl-item').each( function(){
+                    $(obj).find('.slideshow-item').each( function(){
                         $(this).css({ 'height': 'auto' });
                         if ( $(this).outerHeight() > tallest ){ tallest = $(this).outerHeight(); }
                     });
-                    $(obj).find('.crsl-item').css({ height: tallest+'px' });
+                    $(obj).find('.slideshow-item').css({ height: tallest+'px' });
                 }
                 return true;
             };
@@ -213,7 +212,7 @@
                 // Prevent Animate Event
                 obj.preventAnimateEvent();
                 // Active
-                obj.itemActive = $(obj).find('.crsl-item.'+defaults.itemClassActive);
+                obj.itemActive = $(obj).find('.slideshow-item.'+defaults.itemClassActive);
                 return true;
             };
 
@@ -228,13 +227,13 @@
                 // Prevent Animate Event
                 obj.preventAnimateEvent();
                 // Active
-                obj.itemActive = $(obj).find('.crsl-item.'+defaults.itemClassActive);
+                obj.itemActive = $(obj).find('.slideshow-slide.'+defaults.itemClassActive);
                 obj.next();
                 return true;
             };
 
             obj.testPrevious = function(active){
-                return $('.crsl-wrap', obj).find('.crsl-item').index(active) > 0;
+                return $('.slideshow-wrap', obj).find('.slideshow-slide').index(active) > 0;
             };
             obj.testNext = function(){
                 return ( !defaults.infinite &&
@@ -248,19 +247,19 @@
             obj.previous = function(){
                 obj.wrapMargin = defaults.infinite ? obj.wrapMarginDefault + $(obj.itemActive).outerWidth(true) : obj.wrapMargin + $(obj.itemActive).outerWidth(true);
                 var prevItemIndex = $(obj.itemActive).index();
-                var newItemActive = $(obj.itemActive).prev('.crsl-item');
+                var newItemActive = $(obj.itemActive).prev('.slideshow-slide');
                 var action = 'previous';
                 // Trigger Begin Carousel Move
                 $(obj).trigger('beginCarousel', [defaults, obj, action]);
                 // Animate
                 $(obj).
-                find('.crsl-wrap').
+                find('.slideshow-wrap').
                 animate({ marginLeft: obj.wrapMargin+'px' }, defaults.speed, function(){
                     // Active
                     $(obj.itemActive).removeClass(defaults.itemClassActive);
                     $(newItemActive).addClass(defaults.itemClassActive);
                     if( defaults.infinite ){
-                        $(this).css({ marginLeft: obj.wrapMarginDefault }).find('.crsl-item:first-child').before( $('.crsl-item:last-child', obj) );
+                        $(this).css({ marginLeft: obj.wrapMarginDefault }).find('.slideshow-slide:first-child').before( $('.slideshow-slide:last-child', obj) );
                     } else {
                         if( obj.testPrevious(newItemActive) === false )
                             $( '#'+defaults.navigation ).find('.previous').addClass('previous-inactive');
@@ -276,19 +275,19 @@
             obj.next = function(){
                 obj.wrapMargin = defaults.infinite ? obj.wrapMarginDefault - $(obj.itemActive).outerWidth(true) : obj.wrapMargin - $(obj.itemActive).outerWidth(true);
                 var nextItemIndex = $(obj.itemActive).index();
-                var newItemActive = $(obj.itemActive).next('.crsl-item');
+                var newItemActive = $(obj.itemActive).next('.slideshow-slide');
                 var action = 'next';
                 // Trigger Begin Carousel Move
                 $(obj).trigger('beginCarousel', [defaults, obj, action]);
                 // Animate
                 $(obj).
-                find('.crsl-wrap').
+                find('.slideshow-wrap').
                 animate({ marginLeft: obj.wrapMargin+'px' }, defaults.speed, function(){
                     // Active
                     $(obj.itemActive).removeClass(defaults.itemClassActive);
                     $(newItemActive).addClass(defaults.itemClassActive);
                     if( defaults.infinite ){
-                        $(this).css({ marginLeft: obj.wrapMarginDefault }).find('.crsl-item:last-child').after( $('.crsl-item:first-child', obj) );
+                        $(this).css({ marginLeft: obj.wrapMarginDefault }).find('.slideshow-slide:last-child').after( $('.slideshow-slide:first-child', obj) );
                     } else {
                         if( obj.testPrevious(newItemActive) )
                             $( '#'+defaults.navigation ).find('.previous').removeClass('previous-inactive');
@@ -306,7 +305,7 @@
                 if (event.target) current = event.target;
                 else if (event.srcElement) current = event.srcElement;
                 // Detect mouseover
-                if( ( $(obj).attr('id') && $(current).parents('.crsl-items').attr('id') === $(obj).attr('id') ) || ( $(current).parents('.crsl-items').data('navigation') === $(obj).data('navigation') ) ){
+                if( ( $(obj).attr('id') && $(current).parents('.slideshow-slide').attr('id') === $(obj).attr('id') ) || ( $(current).parents('.slideshow-slides').data('navigation') === $(obj).data('navigation') ) ){
                     mouseHover = true;
                 } else {
                     mouseHover = false;
@@ -404,5 +403,5 @@
 })(jQuery);
 
 jQuery(document).ready(function($){
-    $('.crsl-items').carousel({ overflow: true, visible: 2, itemMinWidth: 400, itemMargin: 10 });
+    $('.slideshow-slides').slideshow({ overflow: true, visible: 1, itemMinWidth: 400, itemMargin: 10, itemEqualHeight: true, itemClassActive: 'active-slide' });
 });
