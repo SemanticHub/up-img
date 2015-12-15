@@ -2,6 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f3140ec-ddcf-43ab-afca-b8d09965a164" name="Default" comment="cleanup">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/img/ok.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/img/previous-next.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/img/temp/abstract.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/img/temp/animals.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/img/temp/food.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/img/temp/nature.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/img/temp/people.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/img/temp/sports.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/css/docs.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/css/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/js/jquery-1.9.1.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/js/modernizr-2.5.3.custom.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/js/slideshow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/slideshow/slideshow.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="up-img.iws" />
@@ -180,15 +194,15 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Developer\github\up-img\web" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Developer\github\up-img\web" />
       <recent name="D:\Developer\github\up-img" />
       <recent name="D:\Developer\github\up-img\web\assets\theme\js" />
       <recent name="D:\Developer\github\up-img\web\assets\theme\css" />
-      <recent name="D:\Developer\github\up-img\web" />
       <recent name="D:\Developer\github\up-img\web\assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Developer\github\up-img\web" />
     </key>
   </component>
   <component name="RunManager">
@@ -238,7 +252,13 @@
       <option name="project" value="LOCAL" />
       <updated>1450180520290</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="cleanup">
+      <created>1450180609726</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1450180609726</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
